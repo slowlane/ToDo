@@ -1,7 +1,7 @@
 class Project {
     #toDoList = [];
     #title;
-    #completionDate;
+    #completionDate = 0;
     constructor(title){
         this.#title = title;
     }

@@ -65,6 +65,7 @@ header {
     padding: 5px;
     font-size: 1.5rem;
     font-weight: 600;
+    cursor: pointer;
 }
 
 /* RIGHT SIDE CONTENT */
@@ -81,6 +82,11 @@ header {
     padding: 50px;
 }
 
+#default-header {
+    text-align: center;
+    font-size: 5rem;
+}
+
 #project-title-div {
     display: flex;
     align-items: center;
@@ -89,7 +95,7 @@ header {
 }
 
 #project-title-div h2 {
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 #project-header{

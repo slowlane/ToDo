@@ -2,6 +2,7 @@ import "./style.css";
 import addProject from "./addProject";
 import ProjectTracker from "./projectTracker";
 import projectPage from "./projectPage";
+import projectClick from "./projectClickFunctionality";
 // import Project from "./project";
 
 const runProgram = (function(){
@@ -15,10 +16,18 @@ const runProgram = (function(){
     button.addEventListener('click', retrieveAndPushProject);
 
     function retrieveAndPushProject(){
+        
         const newProject = addProject(content);
+        
+        projectClick(newProject);
+        
         projectTracker.set(newProject);
         projectPage(newProject);
     }
+
+    // function projectTabFunctionality(){
+        
+    // }
 
 })();
 
