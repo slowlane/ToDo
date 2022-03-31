@@ -1,15 +1,21 @@
 // import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, parseISO } from "date-fns";
 
 function constructProjectPage(project){
     const content = document.getElementById('todo-container');
-    
+
     createProjectHeader();
     addTimePicker();
     addButtons();
+    displayCountDown();
 
+    const timeInput = content.querySelector('input');
+
+    //add eventlistener
+    timeInput.addEventListener('input', addCountDown);
     
     
-    
+    //Construction functions
     function createProjectHeader(){
         const projectDiv = document.createElement('div');
         projectDiv.id = 'project-title-div';
@@ -59,6 +65,33 @@ function constructProjectPage(project){
 
         addComponent(addAndRemoveDiv);
     }
+
+    function addCountDown(){
+        const projectDueDate = content.querySelector('input');
+        project.setCompletionDate(projectDueDate.value);
+
+        displayCountDown();
+    }
+
+    function displayCountDown(){
+        if(project.getCompletionDate() != 0){
+            const headerDiv = content.querySelector('#project-title-div');
+            const headerCountDown = headerDiv.querySelector('h2');
+
+            if(headerCountDown != null){
+                headerCountDown.remove();
+            }
+
+            const countDown = formatDistanceToNow(parseISO(project.getCompletionDate()));
+            const countDownHeader = document.createElement('h2');
+            countDownHeader.innerHTML = countDown + ' left';
+
+            headerDiv.appendChild(countDownHeader);
+        }
+
+
+    }
+
     
     function addComponent(component){
         content.appendChild(component);
