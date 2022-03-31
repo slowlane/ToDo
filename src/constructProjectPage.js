@@ -1,5 +1,6 @@
 // import { formatDistanceToNow } from "date-fns";
 import { formatDistanceToNow, parseISO } from "date-fns";
+import addToDo from "./addToDo";
 
 function constructProjectPage(project){
     const content = document.getElementById('todo-container');
@@ -8,6 +9,7 @@ function constructProjectPage(project){
     addTimePicker();
     addButtons();
     displayCountDown();
+    addToDo();
 
     const timeInput = content.querySelector('input');
 

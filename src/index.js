@@ -17,11 +17,10 @@ const runProgram = (function(){
 
     function retrieveAndPushProject(){
         
-        const newProject = addProject(content);
-        
+        const newProject = addProject(content);  
         projectClick(newProject);
         
-        projectTracker.set(newProject);
+        projectTracker.push(newProject);
         projectPage(newProject);
     }
 
