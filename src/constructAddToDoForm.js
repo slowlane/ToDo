@@ -1,5 +1,14 @@
-function constructAddToDoForm(content){
+import ToDo from "./todo";
+import addToDo from "./addToDo";
+function constructAddToDoForm(project){
     createForm();
+    let title;
+    let desc;
+    let date;
+    let prio;
+    let newTask;
+    // console.log(projectPage);
+    // console.log(event);
 
     function createForm(){
         //Create Elements
@@ -25,6 +34,7 @@ function constructAddToDoForm(content){
         titleInput.type = 'text';
         titleInput.placeholder = 'Title of task';
         titleInput.name = 'title';
+        titleInput.required = true;
 
         const descInput = document.createElement('textarea');
         descInput.rows = 4;
@@ -54,7 +64,7 @@ function constructAddToDoForm(content){
 
 
 
-        submitButton.addEventListener('click', getData);
+        submitButton.addEventListener('click', getDataAndMakeNewTask);
 
 
 
@@ -80,17 +90,32 @@ function constructAddToDoForm(content){
         
     }
 
-    function getData(e){
+    function getDataAndMakeNewTask(e){
         e.preventDefault();
+        // console.log(projectPage.myParam);
         const form = document.getElementById('form');
         const formData = new FormData(form);
 
-        for(let pair of formData.values()){
-            console.log(pair);
-        }
+        title = formData.get('title');
+        desc = formData.get('description');
+        date = formData.get('date');
+        prio = formData.get('priority');
+        
+        const newTask = new ToDo(title, desc, date, prio);
+        destructAddToDoForm();
+        addToDo(newTask, project);
 
 
+
+        // for(let pair of formData.values()){
+        //     console.log(pair);
+        // }
     }
+    function destructAddToDoForm(){
+        const modal = document.querySelector('.bg-modal');
+        modal.remove();
+    }
+    // return newTask;
 }
 
 export default constructAddToDoForm;

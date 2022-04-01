@@ -23,6 +23,9 @@ class Project {
     getCompletionDate(){
         return this.#completionDate;
     }
+    addTask(task){
+        this.#toDoList.push(task);
+    }
 }
 
 export default Project;

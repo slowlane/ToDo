@@ -1,21 +1,30 @@
 // import { formatDistanceToNow } from "date-fns";
 import { formatDistanceToNow, parseISO } from "date-fns";
+import constructAddToDoForm from "./constructAddToDoForm";
 import addToDo from "./addToDo";
 
 function constructProjectPage(project){
+    
+    //cache DOM
     const content = document.getElementById('todo-container');
 
+    //Instantiate project page contents
     createProjectHeader();
     addTimePicker();
     addButtons();
     displayCountDown();
-    addToDo();
 
+    //cache new DOM-elements after instantiation
+    const buttons = content.querySelectorAll('.todo-button');
+    const todoAddButton = buttons[0];
+    // const removeButton = buttons[1];
     const timeInput = content.querySelector('input');
 
-    //add eventlistener
-    timeInput.addEventListener('input', addCountDown);
-    
+    //add eventlisteners
+    todoAddButton.addEventListener('click', () => {
+        constructAddToDoForm(project)}
+    );
+    timeInput.addEventListener('input', addCountDown);    
     
     //Construction functions
     function createProjectHeader(){
@@ -61,6 +70,9 @@ function constructProjectPage(project){
         addAndRemoveDiv.id = 'todo-button-container';
         addButton.classList.add('todo-button');
         removeButton.classList.add('todo-button');
+
+        
+
 
         addAndRemoveDiv.appendChild(addButton);
         addAndRemoveDiv.appendChild(removeButton);
