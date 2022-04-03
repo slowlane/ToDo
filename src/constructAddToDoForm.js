@@ -1,12 +1,15 @@
 import ToDo from "./todo";
 import addToDo from "./addToDo";
+import constructProjectPage from "./constructProjectPage";
+import deleteProjectPage from "./deleteProjectPage";
+
 function constructAddToDoForm(project){
     createForm();
     let title;
     let desc;
     let date;
     let prio;
-    let newTask;
+    // let newTask;
     // console.log(projectPage);
     // console.log(event);
 
@@ -61,12 +64,10 @@ function constructAddToDoForm(project){
         submitButton.innerHTML = 'Create task';
 
 
-
-
-
+        closeIcon.addEventListener('click', () => {
+            closeForm(modal);
+        })
         submitButton.addEventListener('click', getDataAndMakeNewTask);
-
-
 
 
         //Add to various DOM elements
@@ -92,7 +93,6 @@ function constructAddToDoForm(project){
 
     function getDataAndMakeNewTask(e){
         e.preventDefault();
-        // console.log(projectPage.myParam);
         const form = document.getElementById('form');
         const formData = new FormData(form);
 
@@ -104,12 +104,13 @@ function constructAddToDoForm(project){
         const newTask = new ToDo(title, desc, date, prio);
         destructAddToDoForm();
         addToDo(newTask, project);
+        //Re-render page
+        deleteProjectPage();
+        constructProjectPage(project);
+    }
 
-
-
-        // for(let pair of formData.values()){
-        //     console.log(pair);
-        // }
+    function closeForm(modal){
+        modal.remove();
     }
     function destructAddToDoForm(){
         const modal = document.querySelector('.bg-modal');

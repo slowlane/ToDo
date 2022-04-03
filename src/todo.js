@@ -5,6 +5,21 @@ class ToDo {
         this.dueDate = dueDate;
         this.priority = priority;
     }
+    get(){
+        return this.title + this.description;
+    }
+    getTitle(){
+        return this.title;
+    }
+    getDate(){
+        return this.dueDate;
+    }
+    getDesc(){
+        return this.description;
+    }
+    getPrio(){
+        return this.priority;
+    }
     
 }
 
