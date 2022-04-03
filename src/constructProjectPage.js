@@ -62,45 +62,8 @@ function constructProjectPage(project){
         todoDiv.classList.add('todo-div');
 
         todoDiv.addEventListener('click', (e) => {
-            const element = e.target;
-            if(element.nodeName === 'DIV' && element.classList.contains('todo-div')){
-                element.classList.toggle('open-todo');
-
-                const todoExtensionDiv = document.createElement('div');
-    
-                if(element.classList.contains('open-todo')){
-                    
-                    // todoExtensionDiv.classList.add('todo-extended-div');
-                    todoExtensionDiv.id = 'extended-div';
-    
-                    const todoDescPara = document.createElement('p');
-                    const todoPrio = document.createElement('p');
-    
-                    todoDescPara.innerHTML = todo.getDesc();
-                    todoPrio.innerHTML = todo.getPrio();
-    
-                    todoExtensionDiv.appendChild(todoDescPara);
-                    todoExtensionDiv.appendChild(todoPrio);
-                    element.appendChild(todoExtensionDiv);
-    
-                    todoExtensionDiv.addEventListener('click', () => {
-    
-                    });
-                }
-                else{
-                    for(let elem of element.childNodes){
-                        if(elem.nodeName === 'DIV' && elem.id != 'no-delete'){
-                            elem.remove();
-                        }
-                    }
-                }
-            }
-            
-
-            
-            
-
-        })
+            renderTask(e, todo);
+});
 
         addComponent(todoDiv);
 
@@ -189,6 +152,48 @@ function constructProjectPage(project){
     function addComponent(component){
         content.appendChild(component);
     }
+
+    function renderTask(e, todo){
+        const element = e.target;
+        if(element.nodeName === 'DIV' && element.classList.contains('todo-div')){
+            element.classList.toggle('open-todo');
+
+            const todoExtensionDiv = document.createElement('div');
+
+            if(element.classList.contains('open-todo')){
+                
+                // todoExtensionDiv.classList.add('todo-extended-div');
+                todoExtensionDiv.id = 'extended-div';
+
+                const todoDescPara = document.createElement('p');
+                // const todoPrio = document.createElement('p');
+
+                todoDescPara.innerHTML = todo.getDesc();
+                // todoPrio.innerHTML = todo.getPrio();
+
+                todoExtensionDiv.appendChild(todoDescPara);
+                // todoExtensionDiv.appendChild(todoPrio);
+                element.appendChild(todoExtensionDiv);
+
+                todoExtensionDiv.addEventListener('click', () => {
+
+                });
+            }
+            else{
+                for(let elem of element.childNodes){
+                    if(elem.nodeName === 'DIV' && elem.id != 'no-delete'){
+                        elem.remove();
+                    }
+                }
+            }
+        }
+        
+
+        
+        
+
+    }
+    
 
 };
 

@@ -109,8 +109,8 @@ header {
 
 #choose-time-div {
     display: flex;
-    gap: 5px;
-    justify-content: space-between;
+    gap: 20px;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -137,6 +137,7 @@ header {
     font-size: 1.5rem;
     box-shadow: 2px 5px 10px 0px grey;
     z-index: 2;
+    cursor: pointer;
 }
 
 .todo-div p {
@@ -150,6 +151,10 @@ header {
     width: 100%;
     height: 30px;
     pointer-events: none;
+    font-weight: 600;
+    font-size: 1.7rem;
+    border-bottom: 2px solid #80808087;
+    padding-bottom: 34px;
 }
 
 
@@ -164,7 +169,11 @@ header {
 
 
 #extended-div {
+    display: flex;
     z-index: 1;
+    justify-content: space-between;
+    height: 100%;
+    pointer-events: none;
 }
 
 
@@ -193,6 +202,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
     /* display: none; */
 }
 
