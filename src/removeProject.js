@@ -31,7 +31,6 @@ export const removeProject = (function(e, projectArray){
             if(projectName === liText){
                 listItem.remove();
             }
-            console.log(liText);
 
         }
     }
