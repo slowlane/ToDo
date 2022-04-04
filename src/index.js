@@ -3,10 +3,10 @@ import addProject from "./addProject";
 import ProjectTracker from "./projectTracker";
 import projectPage from "./projectPage";
 import projectClick from "./projectClickFunctionality";
+import { stringifyRequest } from "css-loader/dist/utils";
 // import Project from "./project";
 
 const runProgram = (function(){
-    console.log('farg');
     const projectTracker = new ProjectTracker();
     
     //cache DOM
@@ -18,20 +18,35 @@ const runProgram = (function(){
 
     function retrieveAndPushProject(){
         
-        const newProject = addProject(content);  
-        projectClick(newProject);
+        const newProjectAndClose = addProject(content);
+ 
+        const newProject = newProjectAndClose.project;
+        const newCloseIcon = newProjectAndClose.closeIcon;
         
+        //add eventlisteners
+        newCloseIcon.addEventListener('click', (e) => {
+            deleteProjectFromTracker(e);
+        });
+        projectClick(newProject);
+
+        //add to tracker and create project page
         projectTracker.push(newProject);
         projectPage(newProject);
     }
-
-    function getProjects(){
-        return projectTracker;
+    
+    function deleteProjectFromTracker(e){
+        const closeIconText = e.target.innerText;
+        const projectName = e.target.parentElement.innerText;
+        const finalProjectTitle = projectName.replace(closeIconText, '');
+        console.log(finalProjectTitle);
     }
+    // function getProjects(){
+    //     return projectTracker;
+    // }
 
-    return {
-        getProjects
-    }
+    // return {
+    //     getProjects
+    // }
 
     // function projectTabFunctionality(){
         
@@ -39,7 +54,4 @@ const runProgram = (function(){
 
 })();
 
-
-
-// export default projectsModule;
 
