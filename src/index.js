@@ -3,7 +3,9 @@ import addProject from "./addProject";
 import ProjectTracker from "./projectTracker";
 import projectPage from "./projectPage";
 import projectClick from "./projectClickFunctionality";
-import { stringifyRequest } from "css-loader/dist/utils";
+import deleteProjectPage from "./deleteProjectPage";
+import { removeProject } from "./removeProject";
+
 // import Project from "./project";
 
 const runProgram = (function(){
@@ -25,7 +27,7 @@ const runProgram = (function(){
         
         //add eventlisteners
         newCloseIcon.addEventListener('click', (e) => {
-            deleteProjectFromTracker(e);
+            removeProject(e, projectTracker.get());
         });
         projectClick(newProject);
 
@@ -34,12 +36,8 @@ const runProgram = (function(){
         projectPage(newProject);
     }
     
-    function deleteProjectFromTracker(e){
-        const closeIconText = e.target.innerText;
-        const projectName = e.target.parentElement.innerText;
-        const finalProjectTitle = projectName.replace(closeIconText, '');
-        console.log(finalProjectTitle);
-    }
+
+    
     // function getProjects(){
     //     return projectTracker;
     // }
