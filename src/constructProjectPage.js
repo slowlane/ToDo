@@ -1,8 +1,6 @@
-// import { formatDistanceToNow } from "date-fns";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
 import constructAddToDoForm from "./constructAddToDoForm";
-// import addToDo from "./addToDo";
 import { removeToDo } from "./removeToDo";
 
 function constructProjectPage(project){
@@ -47,12 +45,11 @@ function constructProjectPage(project){
         const todoTitlePara = document.createElement('p');
         const todoDueDatePara = document.createElement('p');
         const closeIcon = document.createElement('div');
-        console.log(todo);
         
         
 
-        // todoTitlePara.innerHTML = todo.getTitle();
-        todoTitlePara.innerHTML = todo.title;
+        todoTitlePara.innerHTML = todo.getTitle();
+        // todoTitlePara.innerHTML = todo.title;
         todoDueDatePara.innerHTML = todo.getDate();
         closeIcon.innerHTML = '+';
 
@@ -88,7 +85,6 @@ function constructProjectPage(project){
         projectDiv.appendChild(projectHeader);
 
         addComponent(projectDiv);
-        // console.log(project.getTitle());
     }
 
 
@@ -139,18 +135,14 @@ function constructProjectPage(project){
             if(headerCountDown != null){
                 headerCountDown.remove();
             }
-
             const countDown = formatDistanceToNow(parseISO(project.getCompletionDate()));
             const countDownHeader = document.createElement('h2');
             countDownHeader.innerHTML = countDown + ' left';
 
             headerDiv.appendChild(countDownHeader);
         }
-
-
     }
 
-    
     function addComponent(component){
         content.appendChild(component);
     }
@@ -166,19 +158,22 @@ function constructProjectPage(project){
                 
                 todoExtensionDiv.id = 'extended-div';
 
-                const todoDescPara = document.createElement('p');
-                todoDescPara.innerHTML = todo.getDesc();
+                const todoTextArea = document.createElement('textarea');
+                todoTextArea.innerHTML = todo.getDesc();
+                todoTextArea.id = 'todo-textarea';
 
-                todoExtensionDiv.appendChild(todoDescPara);
+                todoExtensionDiv.appendChild(todoTextArea);
              
                 element.appendChild(todoExtensionDiv);
-
-                todoExtensionDiv.addEventListener('click', () => {
-
-                });
             }
             else{
                 for(let elem of element.childNodes){
+                    if(elem.id === 'extended-div'){
+                        //Set textareas current value as new task description, save it to localstorage
+                        todo.setDesc(document.getElementById("todo-textarea").value);
+                        addProjectsToLocalStorage();
+                    }
+                        //Close the opened task
                     if(elem.nodeName === 'DIV' && elem.id != 'no-delete'
                     && elem.id != 'task-close'){
                         elem.remove();

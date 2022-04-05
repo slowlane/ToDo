@@ -1,7 +1,7 @@
 import Project from './project';
-import removeProject from './removeProject';
 
 const addProject = function (content) {
+    //Create project and add it to the UL to the left of the page
     const closeIcon = document.createElement('div');
     const projectUl = content.querySelector('ul');
     const input = content.querySelector('input');

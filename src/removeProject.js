@@ -11,9 +11,7 @@ export const removeProject = (function(e){
     const projectName = e.target.parentElement.innerText;
     let finalProjectTitle = projectName.replace(closeIconText, '');
     finalProjectTitle = finalProjectTitle.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
-    // const projectArray = projectTracker.get();
-    
-    console.log(finalProjectTitle + '' + projectArray[0].getTitle());
+
 
     for(let i = 0; i < projectArray.length; i++){
         if(projectArray[i].getTitle() === finalProjectTitle){
@@ -24,7 +22,6 @@ export const removeProject = (function(e){
             defaultProjectPage();
         }
     }
-
 
 
     function deleteProjectFromList(projectName){
@@ -50,5 +47,4 @@ export const removeProject = (function(e){
 
 
     }
-    // <h1 id="default-header">Your project will display here!</h1>
 });

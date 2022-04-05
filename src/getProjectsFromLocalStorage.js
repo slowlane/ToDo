@@ -14,9 +14,8 @@ export function getProjectsFromLocalStorage(){
             if(project.toDoList != undefined){
                 for(let task of project.toDoList){
                     newProject.addTask(makeTask(task));
-                    console.log(newProject.get());
+                    // console.log(newProject.get());
                 }
-                // newProject.setToDoList(project.toDoList);
             }
             projectTracker.push(newProject);
             addProjectFromLocalStorageToDOM(newProject);
@@ -27,28 +26,11 @@ export function getProjectsFromLocalStorage(){
       }
 }
 function makeTask(object){
-    const newTask = new ToDo(object.title, object.description, object.dueDate, object.priority);
+    const newTask = new ToDo(object.title, object.description, object.dueDate);
     return newTask;
 
 }
 
-// function retrieveAndPushProject(){
-//     const newProjectAndClose = addProject(content);
-
-//     const newProject = newProjectAndClose.project;
-//     const newCloseIcon = newProjectAndClose.closeIcon;
-    
-//     //add eventlisteners
-//     newCloseIcon.addEventListener('click', (e) => {
-//         removeProject(e);
-//     });
-//     projectClick(newProject);
-
-//     //add to tracker and create project page
-//     projectTracker.push(newProject);
-//     addProjectsToLocalStorage();
-//     projectPage(newProject);
-// }
 
 function storageAvailable(type) {
     var storage;

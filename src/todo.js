@@ -1,9 +1,9 @@
 class ToDo {
-    constructor(title, description, dueDate, priority){
+    constructor(title, description, dueDate){
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.priority = priority;
+        // this.priority = priority;
     }
     get(){
         return this.title + this.description;
@@ -17,8 +17,8 @@ class ToDo {
     getDesc(){
         return this.description;
     }
-    getPrio(){
-        return this.priority;
+    setDesc(desc){
+        this.description = desc;
     }
     
 }

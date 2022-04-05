@@ -8,10 +8,6 @@ function constructAddToDoForm(project){
     let title;
     let desc;
     let date;
-    let prio;
-    // let newTask;
-    // console.log(projectPage);
-    // console.log(event);
 
     function createForm(){
         //Create Elements
@@ -52,13 +48,6 @@ function constructAddToDoForm(project){
         dateInput.type = 'date';
         dateInput.name = 'date';
 
-        const prioDiv = document.createElement('div');
-        const prioLabel = document.createElement('label');
-        prioLabel.innerHTML = 'Choose priority';
-        const prioInput = document.createElement('input');
-        prioInput.type = 'number';
-        prioInput.name = 'priority';
-
         const submitButton = document.createElement('button');
         submitButton.type = 'submit';
         submitButton.innerHTML = 'Create task';
@@ -79,16 +68,10 @@ function constructAddToDoForm(project){
         form.appendChild(titleInput);
         form.appendChild(descInput);
         form.appendChild(dateDiv);
-        form.appendChild(prioDiv);
         form.appendChild(submitButton);
 
         dateDiv.appendChild(dateLabel);
         dateDiv.appendChild(dateInput);
-
-        prioDiv.appendChild(prioLabel);
-        prioDiv.appendChild(prioInput);
-
-        
     }
 
     function getDataAndMakeNewTask(e){
@@ -99,9 +82,8 @@ function constructAddToDoForm(project){
         title = formData.get('title');
         desc = formData.get('description');
         date = formData.get('date');
-        prio = formData.get('priority');
         
-        const newTask = new ToDo(title, desc, date, prio);
+        const newTask = new ToDo(title, desc, date);
         destructAddToDoForm();
         addToDo(newTask, project);
         //Re-render page
@@ -116,7 +98,6 @@ function constructAddToDoForm(project){
         const modal = document.querySelector('.bg-modal');
         modal.remove();
     }
-    // return newTask;
 }
 
 export default constructAddToDoForm;
