@@ -6,10 +6,11 @@ const addProject = function (content) {
     const projectUl = content.querySelector('ul');
     const input = content.querySelector('input');
     const projectName = input.value;
+    console.log(projectName);
 
     const newLi = document.createElement('li');
     newLi.classList.add('project-li');
-    newLi.innerHTML = projectName;
+    newLi.innerHTML = input.value;
     newLi.appendChild(closeIcon);
 
     projectUl.appendChild(newLi);

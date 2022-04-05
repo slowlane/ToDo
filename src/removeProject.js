@@ -1,8 +1,11 @@
+import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
 import deleteProjectPage from "./deleteProjectPage";
+import projectTracker from "./projectTracker";
 
-export const removeProject = (function(e, projectArray){
+export const removeProject = (function(e){
     const allContent = document.querySelector('.content');
     const content = allContent.querySelector('.left-side-div');
+    const projectArray = projectTracker.get();
 
     const closeIconText = e.target.innerText;
     const projectName = e.target.parentElement.innerText;
@@ -17,6 +20,7 @@ export const removeProject = (function(e, projectArray){
             deleteProjectPage();
             projectArray.splice(i, 1);
             deleteProjectFromList(finalProjectTitle);
+            addProjectsToLocalStorage(projectTracker);
             defaultProjectPage();
         }
     }
@@ -34,6 +38,7 @@ export const removeProject = (function(e, projectArray){
 
         }
     }
+
     
     function defaultProjectPage(){
         const todoDiv = allContent.querySelector('#todo-container');

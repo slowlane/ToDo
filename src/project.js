@@ -26,6 +26,9 @@ class Project {
     addTask(task){
         this.#toDoList.push(task);
     }
+    setToDoList(newToDoList){
+        this.#toDoList = newToDoList;
+    }
 }
 
 export default Project;

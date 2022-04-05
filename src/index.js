@@ -5,11 +5,17 @@ import projectPage from "./projectPage";
 import projectClick from "./projectClickFunctionality";
 import deleteProjectPage from "./deleteProjectPage";
 import { removeProject } from "./removeProject";
+import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
+import projectTracker from "./projectTracker";
+import { getProjectsFromLocalStorage } from "./getProjectsFromLocalStorage";
 
 // import Project from "./project";
 
 const runProgram = (function(){
-    const projectTracker = new ProjectTracker();
+    // const projectTracker = new ProjectTracker();
+    if(localStorage.getItem('projects') != null){
+        getProjectsFromLocalStorage();
+    }
     
     //cache DOM
     const content = document.querySelector('.left-side-div');
@@ -19,7 +25,6 @@ const runProgram = (function(){
     button.addEventListener('click', retrieveAndPushProject);
 
     function retrieveAndPushProject(){
-        
         const newProjectAndClose = addProject(content);
  
         const newProject = newProjectAndClose.project;
@@ -27,12 +32,13 @@ const runProgram = (function(){
         
         //add eventlisteners
         newCloseIcon.addEventListener('click', (e) => {
-            removeProject(e, projectTracker.get());
+            removeProject(e);
         });
         projectClick(newProject);
 
         //add to tracker and create project page
         projectTracker.push(newProject);
+        addProjectsToLocalStorage();
         projectPage(newProject);
     }
     

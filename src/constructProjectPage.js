@@ -1,5 +1,6 @@
 // import { formatDistanceToNow } from "date-fns";
 import { formatDistanceToNow, parseISO } from "date-fns";
+import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
 import constructAddToDoForm from "./constructAddToDoForm";
 // import addToDo from "./addToDo";
 import { removeToDo } from "./removeToDo";
@@ -46,10 +47,12 @@ function constructProjectPage(project){
         const todoTitlePara = document.createElement('p');
         const todoDueDatePara = document.createElement('p');
         const closeIcon = document.createElement('div');
+        console.log(todo);
         
         
 
-        todoTitlePara.innerHTML = todo.getTitle();
+        // todoTitlePara.innerHTML = todo.getTitle();
+        todoTitlePara.innerHTML = todo.title;
         todoDueDatePara.innerHTML = todo.getDate();
         closeIcon.innerHTML = '+';
 
@@ -123,6 +126,7 @@ function constructProjectPage(project){
     function addCountDown(){
         const projectDueDate = content.querySelector('input');
         project.setCompletionDate(projectDueDate.value);
+        addProjectsToLocalStorage();
 
         displayCountDown();
     }

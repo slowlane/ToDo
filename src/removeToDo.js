@@ -1,3 +1,4 @@
+import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
 import constructProjectPage from "./constructProjectPage";
 import deleteProjectPage from "./deleteProjectPage";
 
@@ -12,5 +13,6 @@ export function removeToDo(event, project){
         }
     }
     deleteProjectPage();
+    addProjectsToLocalStorage();
     constructProjectPage(project);
 }

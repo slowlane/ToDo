@@ -12,4 +12,6 @@
     }
 }
 
-export default ProjectTracker;
+const projectTracker = new ProjectTracker();
+
+export default projectTracker;
