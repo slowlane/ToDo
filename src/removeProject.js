@@ -1,11 +1,13 @@
 import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
 import deleteProjectPage from "./deleteProjectPage";
 import projectTracker from "./projectTracker";
+import { defaultProjectPage } from "./defaultProjectPage";
 
 export const removeProject = (function(e){
     const allContent = document.querySelector('.content');
     const content = allContent.querySelector('.left-side-div');
     const projectArray = projectTracker.get();
+    e.stopPropagation();
 
     const closeIconText = e.target.innerText;
     const projectName = e.target.parentElement.innerText;
@@ -15,6 +17,7 @@ export const removeProject = (function(e){
 
     for(let i = 0; i < projectArray.length; i++){
         if(projectArray[i].getTitle() === finalProjectTitle){
+            console.log('up');
             deleteProjectPage();
             projectArray.splice(i, 1);
             deleteProjectFromList(finalProjectTitle);
@@ -36,15 +39,4 @@ export const removeProject = (function(e){
         }
     }
 
-    
-    function defaultProjectPage(){
-        const todoDiv = allContent.querySelector('#todo-container');
-        const newH1 = document.createElement('h1');
-        newH1.innerHTML = 'Your project will display here!';
-        newH1.id = 'default-header';
-        
-        todoDiv.appendChild(newH1);
-
-
-    }
 });

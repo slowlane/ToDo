@@ -2,11 +2,15 @@ import { formatDistanceToNow, parseISO } from "date-fns";
 import { addProjectsToLocalStorage } from "./addProjectsToLocalStorage";
 import constructAddToDoForm from "./constructAddToDoForm";
 import { removeToDo } from "./removeToDo";
+import deleteProjectPage from "./deleteProjectPage";
+import { defaultProjectPage } from "./defaultProjectPage";
 
 function constructProjectPage(project){
     
     //cache DOM
     const content = document.getElementById('todo-container');
+    const header = document.querySelector('header');
+    const headerh1 = header.querySelector('h1');
 
     //Instantiate project page contents
     createProjectHeader();
@@ -23,10 +27,14 @@ function constructProjectPage(project){
     //add eventlisteners
     todoAddButton.addEventListener('click', () => {
         constructAddToDoForm(project);
-    }
-    );
+    });
 
     timeInput.addEventListener('input', addCountDown);    
+
+    headerh1.addEventListener('click', (e) => {
+        deleteProjectPage();
+        defaultProjectPage();
+    });
     
     //Construction functions
     //Create Task item if present

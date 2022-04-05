@@ -1,4 +1,5 @@
 import Project from './project';
+import { removeProject } from './removeProject';
 
 const addProject = function (content) {
     //Create project and add it to the UL to the left of the page
@@ -23,8 +24,12 @@ const addProject = function (content) {
     closeIcon.innerHTML = '+';
     closeIcon.id = 'project-close';
 
+    closeIcon.addEventListener('click', (e) => {
+        removeProject(e);
+    });
+
     
-    return { project, closeIcon };
+    return project;
 };
 
 

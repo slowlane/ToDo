@@ -34,9 +34,14 @@ header {
     background-color: rgba(0, 0, 0, 0.856);
     align-items: center;
     padding: 30px;
-    font-size: 3rem;
     color: white;
     box-shadow: 0 4px 15px 4px rgb(90 77 77);
+    
+}
+
+header h1 {
+    font-size: 3rem;
+    cursor: pointer;
 }
 
 .content {
@@ -296,6 +301,7 @@ header {
     font-size: 42px;
     transform: rotate(45deg);
     cursor: pointer;
+    z-index: 10;
 }
 
 #task-close {
@@ -307,4 +313,25 @@ header {
 #project-close {
     top: -5px;
     right: 5px;
+}
+
+@media only screen and (max-width: 960px) {
+    body {
+        height: 100%;
+    }
+    .content {
+        flex-direction: column;
+    }
+    .left-side-div {
+        width: 100%;
+    }
+    #todo-container{
+        width: 100%;
+        min-height: 74vh;
+    }
+
+    #project-header{
+        font-size: 2.5rem;
+    }
+
 }

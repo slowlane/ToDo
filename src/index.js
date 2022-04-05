@@ -21,15 +21,7 @@ const runProgram = (function(){
     button.addEventListener('click', retrieveAndPushProject);
 
     function retrieveAndPushProject(){
-        const newProjectAndClose = addProject(content);
- 
-        const newProject = newProjectAndClose.project;
-        const newCloseIcon = newProjectAndClose.closeIcon;
-        
-        //add eventlisteners
-        newCloseIcon.addEventListener('click', (e) => {
-            removeProject(e);
-        });
+        const newProject = addProject(content);
         projectClick(newProject);
 
         //add to tracker and create project page
