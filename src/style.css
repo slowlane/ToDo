@@ -95,6 +95,7 @@ header h1 {
   color: white;
   list-style-type: none;
   position: relative;
+  min-height: 40px;
 }
 
 .left-side-div li:hover {
