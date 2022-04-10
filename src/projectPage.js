@@ -1,10 +1,7 @@
 import constructProjectPage from "./constructProjectPage";
-import deleteProjectPage from "./deleteProjectPage";
 
-const projectPage = function(project){ 
-    
-    deleteProjectPage();
-    constructProjectPage(project);
-}
+const projectPage = function (project) {
+  constructProjectPage(project);
+};
 
 export default projectPage;
